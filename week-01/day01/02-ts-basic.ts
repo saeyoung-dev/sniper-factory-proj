@@ -93,11 +93,12 @@ console.log(add(1, 2));
 
 // - 문자열을 받아서 문자열을 반환하는 함수
 const concat = (a: string, b: string) => {
-  if (a.trim() !== '' && b.trim() !== '') {
-    return a + b;
+  if (a.trim() === '' || b.trim() === '') {
+    throw new Error('❌ Empty string');
   }
+  return a + b;
 };
-console.log(concat('effy', 'chang'));
+console.log(concat('hello', 'world'));
 
 // - 불리언 값을 인자로 받아서 아무것도 반환하지 않는 함수 (void 반환)
 const getState = (state: boolean): void => {
@@ -106,14 +107,14 @@ const getState = (state: boolean): void => {
 getState(true);
 
 // - 문자열에서 가장 긴 단어를 반환하는 함수
-const inputWord = `Hello i am effy, Good to see you!`;
 const getLongestWord = (word: string) => {
-  const converted = word.split(' ').map((item) => item.replace('/-,.!?/g', ''));
+  const converted = word.split(' ').map((item) => item.replace('/[^ws]/g', ''));
   const longest = converted.reduce((longest, current) =>
     longest.length > current.length ? longest : current
   );
   return longest;
 };
+const inputWord = `Hello, good to see you!`;
 console.log(getLongestWord(inputWord));
 
 // [연습문제 - 암스트롱 수 구하기]
@@ -121,10 +122,15 @@ console.log(getLongestWord(inputWord));
 
 // 암스트롱의 수는 세 자리의 정수 중에서 각 자리의 수를 세 제곱한 수의 합과 자신이 같은 수를 말합니다.
 // 예를 들어 1 5 3 = 1 + 125 + 27 입니다.
-// 이와 같은 수를 암스트롱의 수라고 말합니다.
 
-const getAmstrong = (num: number) => {
-  const splited = num.toString().split('');
-  console.log(splited);
-};
-getAmstrong(123);
+function isAmstrongNumber(num: number): boolean {
+  const numStr = num.toString();
+  const numDigits = numStr.length;
+
+  const sumOfPowers = numStr
+    .split('')
+    .map((digit) => parseInt(digit, 10))
+    .reduce((sum, digit) => sum + Math.pow(digit, numDigits), 0);
+
+  return sumOfPowers === num;
+}
