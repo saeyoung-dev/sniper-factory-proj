@@ -10,17 +10,14 @@ header {
 nav {
   padding: 1.6rem;
 }
-
 nav ul {
   display: flex;
   gap: 3.2rem;
 }
-
 nav ul li {
   padding: 6px 12px;
   border-radius: 50px;
 }
-
 nav ul li:hover {
   background-color: beige;
   transition: all 0.3s ease-in;
@@ -35,14 +32,22 @@ section {
   padding: 1.6rem;
   border-top: solid 1px #eeeeee;
 }
-
 section:not(:last-child) {
   border-bottom: solid 1px #eeeeee;
 }
-
 section h2 {
   font-size: 32px;
   margin-bottom: 16px;
+}
+section p {
+  font-size: 18px;
+}
+section button {
+  margin-top: 16px;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 100px;
+  background-color: beige;
 }
 
 footer {
