@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
   future: {
     hoverOnlyWhenSupported: true,
   },
