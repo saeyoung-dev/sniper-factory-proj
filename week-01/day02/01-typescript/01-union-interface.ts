@@ -28,13 +28,32 @@
    * 나만의 타입 룰을 사용한다
    */
 
-  interface User {
-    name: string;
-    age: number;
-  }
+  // 1.1 병합
+  // 1.2 상속
+  // 1.3 readonly
+  // 1.4 optional property
 
+  interface User {
+    readonly name: string;
+    readonly age: number;
+  }
+  // interface 병합 : 똑같은 식별자의 인터페이스를 하나로 합쳐주는 것을 의미
   const user: User = {
     name: 'effy',
     age: 20,
+    email: 'email@email.com',
+  };
+  // 아래에 위치하더라도 적용이 됨! 컴파일 과정을 거치는 정적 언어이므로 전체 내용을 검증하게됨
+  interface User {
+    email: string;
+  }
+
+  // Index Signature
+  interface Car {
+    [key: string]: string | number;
+  }
+  const car: Car = {
+    name: 'Mercedez',
+    color: 'Black',
   };
 }

@@ -117,13 +117,17 @@ const getLongestWord = (word: string) => {
 const inputWord = `Hello, good to see you!`;
 console.log(getLongestWord(inputWord));
 
+// Better Version
+const getLongString = (str: string): string =>
+  str.split(' ').sort((a, b) => b.length - a.length)[0];
+
 // [연습문제 - 암스트롱 수 구하기]
 // 100부터 999까지 암스트롱 수를 구하세요
 
 // 암스트롱의 수는 세 자리의 정수 중에서 각 자리의 수를 세 제곱한 수의 합과 자신이 같은 수를 말합니다.
 // 예를 들어 1 5 3 = 1 + 125 + 27 입니다.
 
-function isAmstrongNumber(num: number): boolean {
+const isAmstrongNumber = (num: number): boolean => {
   const numStr = num.toString();
   const numDigits = numStr.length;
 
@@ -133,4 +137,14 @@ function isAmstrongNumber(num: number): boolean {
     .reduce((sum, digit) => sum + Math.pow(digit, numDigits), 0);
 
   return sumOfPowers === num;
-}
+};
+
+const printAmstrongNumber = (): void => {
+  for (let i = 100; i <= 999; i++) {
+    if (isAmstrongNumber(i)) {
+      console.log(i);
+    }
+  }
+};
+
+printAmstrongNumber();
