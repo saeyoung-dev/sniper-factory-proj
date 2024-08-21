@@ -1,2 +1,52 @@
 @import './styles/fonts.css';
 @import './styles/tailwind.css';
+
+header {
+  width: 100%;
+  background-color: beige;
+  padding: 1.6rem;
+}
+
+nav {
+  padding: 1.6rem;
+}
+
+nav ul {
+  display: flex;
+  gap: 3.2rem;
+}
+
+nav ul li {
+  padding: 6px 12px;
+  border-radius: 50px;
+}
+
+nav ul li:hover {
+  background-color: beige;
+  transition: all 0.3s ease-in;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  padding: 1.6rem;
+  border-top: solid 1px #eeeeee;
+}
+
+section:not(:last-child) {
+  border-bottom: solid 1px #eeeeee;
+}
+
+section h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+footer {
+  width: 100%;
+  padding: 16px;
+  background-color: beige;
+}
