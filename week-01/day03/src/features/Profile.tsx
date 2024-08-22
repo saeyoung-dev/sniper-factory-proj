@@ -1,4 +1,4 @@
-import ProfileCard from './components/ProfileCard';
+import ProfileCard from '../components/ProfileCard';
 
 // 더미 데이터
 const profileData = [
@@ -31,7 +31,7 @@ const profileData = [
   },
 ];
 
-function App() {
+function Profile() {
   const onClickHandler = (username: string) => {
     alert(`Followed @${username}!`);
   };
@@ -52,4 +52,4 @@ function App() {
   );
 }
 
-export default App;
+export default Profile;
