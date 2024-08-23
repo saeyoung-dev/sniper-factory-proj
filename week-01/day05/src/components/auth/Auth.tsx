@@ -1,16 +1,24 @@
+import { useState } from 'react';
+
 import Input from '../Input';
 import Button from '../Button';
 import CheckBox from '../CheckBox';
 
 const Auth = () => {
+  const [type, setType] = useState('Login');
+
   return (
     <>
       <div className='item-middle bg-black'>
-        <div className='w-[375px] h-[434px] rounded-lg bg-white border border-[#D1D1D1] py-10 px-[25px] text-[#4f4f4f]'>
-          <h1 className='text-xl font-bold mb-[10px]'>Login Into App</h1>
+        <div className='w-[375px] h-min-[434px] rounded-lg bg-white border border-[#D1D1D1] py-10 px-[25px] text-[#4f4f4f]'>
+          <h1 className='text-xl font-bold mb-[10px]'>{type} Into App</h1>
           <p className='text-sm mb-5'>Please enter your details to continue.</p>
           <form action='' className='grid gap-4'>
-            <Input type='text' placeholder='someone@example.com' />
+            {type === 'Sign' && (
+              <Input type='text' placeholder='Enter your name' />
+            )}
+
+            <Input type='email' placeholder='someone@example.com' />
             <Input type='password' placeholder='Enter Password' />
             <CheckBox type='checkbox'>
               <span className='text-sm color-[#4f4f4f]'>
@@ -28,8 +36,11 @@ const Auth = () => {
               <Button
                 type='button'
                 className='w-full border border-[#4f4f4f] text-[#4f4f4f] rounded-lg'
+                onClick={() =>
+                  setType((type) => (type === 'Login' ? 'Sign' : 'Login'))
+                }
               >
-                Go To Sing up
+                Go To {type === 'Login' ? 'Sign' : 'Login'}
               </Button>
             </div>
           </form>
