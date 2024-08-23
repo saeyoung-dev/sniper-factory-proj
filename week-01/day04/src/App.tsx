@@ -5,22 +5,28 @@ import Button from './components/button';
 const App = () => {
   return (
     <>
-      <div className='flex gap-2 items-center'>
-        <CheckBox id='add-checkbox' label='' />
+      <div className='item-middle flex-col gap-4'>
+        <div className='flex gap-2 items-center'>
+          <Button type='button' value='Add' disabled={false}>
+            Add
+          </Button>
+          <Button type='button' value='Success' disabled={false}>
+            Success
+          </Button>
+          <Button type='button' value='Cancel' disabled={false}>
+            Cancel
+          </Button>
+        </div>
         <Input placeholder='Enter Your Name' />
-        <Button text='Add' />
-      </div>
-
-      <div className='flex gap-2 items-center'>
-        <CheckBox id='add-checkbox' label='' />
-        <Input placeholder='Enter Your Name' />
-        <Button text='Success' />
-      </div>
-
-      <div className='flex gap-2 items-center'>
-        <CheckBox id='add-checkbox' label='' />
-        <Input placeholder='Enter Your Name' />
-        <Button text='Cancel' />
+        <div className='flex gap-4'>
+          <Input placeholder='Enter Your Name' />
+          <Button type='button' value='Add' disabled={false}>
+            Add
+          </Button>
+        </div>
+        <CheckBox id='terms' type='checkbox'>
+          I agree with <strong>terms</strong> and <strong>policies</strong>
+        </CheckBox>
       </div>
     </>
   );

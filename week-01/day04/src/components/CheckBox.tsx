@@ -1,14 +1,23 @@
-interface CheckboxProps {
-  id: string;
-  label: string;
-}
+// type CheckboxProps = {
+//   id: string;
+//   label?: string;
+// };
 
-const CheckBox = ({ id, label }: CheckboxProps) => {
+type CheckBoxProps = Omit<React.ComponentPropsWithoutRef<'input'>, 'type'> & {
+  type: 'checkbox';
+};
+
+const CheckBox = (props: CheckBoxProps) => {
+  const { id, children, ...rest } = props;
   return (
-    <>
-      <input type='checkbox' id={id} />
-      <label htmlFor={id}>{label}</label>
-    </>
+    <div className='flex items-center gap-2'>
+      <input
+        id={id}
+        className='appearance-none cursor:pointer rounded w-[20px] h-[20px] border checked:bg-[#4f4f4f] checked:bg-[url(/icons.svg)] checked:bg-no-repeat checked:bg-center peer/agree'
+        {...rest}
+      />
+      <label htmlFor={id}>{children}</label>
+    </div>
   );
 };
 export default CheckBox;
