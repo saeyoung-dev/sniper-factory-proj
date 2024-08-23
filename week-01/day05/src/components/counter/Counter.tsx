@@ -3,16 +3,16 @@ import { useState } from 'react';
 const Counter = () => {
   const [count, setCount] = useState(0);
 
-  const handleIncrement = () => {
-    setCount((prev) => prev + 1);
-  };
-
-  const handleDecrement = () => {
+  const decrement = () => {
     setCount((prev) => prev - 1);
   };
 
-  const handleReset = () => {
+  const reset = () => {
     setCount(0);
+  };
+
+  const increment = () => {
+    setCount((prev) => prev + 1);
   };
   return (
     <>
@@ -20,13 +20,13 @@ const Counter = () => {
         Counter <span>{count}</span>
       </h1>
       <div className='flex gap-2'>
-        <button className='p-2 border rounded' onClick={handleDecrement}>
+        <button className='p-2 border rounded' onClick={decrement}>
           Decrease
         </button>
-        <button className='p-2 border rounded' onClick={handleReset}>
+        <button className='p-2 border rounded' onClick={reset}>
           Reset
         </button>
-        <button className='p-2 border rounded' onClick={handleIncrement}>
+        <button className='p-2 border rounded' onClick={increment}>
           Increse
         </button>
       </div>
