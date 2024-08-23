@@ -1,0 +1,7 @@
+@import url('https://statics.goorm.io/fonts/GoormSansCode/v1.0.1/GoormSansCode.min.css');
+
+*,
+body {
+  font-family: 'Goorm Sans Code', sans-serif;
+  font-style: normal;
+}
