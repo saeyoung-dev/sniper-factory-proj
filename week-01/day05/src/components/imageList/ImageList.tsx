@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { IoTrashBinOutline, IoSunnyOutline, IoRefresh } from 'react-icons/io5';
 
 function ImageList() {
   const [pictures, setPictures] = useState([
@@ -28,9 +29,29 @@ function ImageList() {
     },
   ]);
 
+  const [deletedStack, setDeletedStack] = useState<
+    | {
+        id: number;
+        url: string;
+      }[]
+  >([]);
+
   const handleDelete = (id: number) => {
-    const deleted = pictures.filter((item) => item.id !== id);
-    setPictures(deleted);
+    const itemToDelete = pictures.find((item) => item.id === id);
+    if (itemToDelete) {
+      setPictures((prev) => prev.filter((item) => item.id !== id));
+      setDeletedStack((prev) => [...prev, itemToDelete]);
+    }
+  };
+
+  const handleUndo = () => {
+    if (deletedStack.length > 0) {
+      const lastDeleted = deletedStack[deletedStack.length - 1];
+      setPictures((prev) => [...prev, lastDeleted]);
+      setDeletedStack((prev) => prev.slice(0, -1));
+    } else {
+      alert("There's nothing to undo.");
+    }
   };
 
   return (
@@ -40,8 +61,15 @@ function ImageList() {
         {/* More Buttons */}
         <div className='flex items-center gap-2'>
           <button className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full'>
-            <img src='/sun.svg' alt='Moon icon' className='h-5 w-5' />
+            <IoSunnyOutline size={20} />
             <span className='sr-only'>Toggle dark mode</span>
+          </button>
+          <button
+            onClick={handleUndo}
+            className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full'
+          >
+            <IoRefresh size={20} />
+            <span className='sr-only'>Undo</span>
           </button>
         </div>
       </header>
@@ -62,7 +90,7 @@ function ImageList() {
               onClick={() => handleDelete(value.id)}
               className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-red-500 text-white hover:bg-red-600 h-10 w-10 absolute top-2 right-2 rounded-full'
             >
-              <img src='/delete.svg' alt='Delete icon' className='h-4 w-4' />
+              <IoTrashBinOutline />
               <span className='sr-only'>Delete</span>
             </button>
           </div>
