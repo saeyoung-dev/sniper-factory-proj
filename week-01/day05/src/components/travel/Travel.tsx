@@ -24,6 +24,13 @@ export default function Travel() {
   };
 
   useEffect(() => {
+    const userPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    console.log(userPrefersDark);
+  }, []);
+
+  useEffect(() => {
     if (darkMode) {
       document.body.className = 'dark';
     } else {

@@ -4,7 +4,9 @@
 // import UseRef from './components/react-hooks/UseRef';
 // import UseEffect from './hooks/useEffect';
 // import ImageList from './components/imageList/ImageList';
-import Travel from './components/travel/Travel';
+// import Travel from './components/travel/Travel';
+// import UseLayoutEffect from './components/react-hooks/useLayoutEffect/UseLayoutEffect';
+import Cart from './components/cart/Cart';
 
 const App = () => {
   return (
@@ -12,7 +14,9 @@ const App = () => {
       {/* <Auth /> */}
       {/* <UseEffect /> */}
       {/* <ImageList /> */}
-      <Travel />
+      {/* <Travel /> */}
+      {/* <UseLayoutEffect /> */}
+      <Cart />
     </>
   );
 };
