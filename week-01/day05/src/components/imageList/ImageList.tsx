@@ -1,7 +1,13 @@
-import { useState } from 'react';
-import { IoTrashBinOutline, IoSunnyOutline, IoRefresh } from 'react-icons/io5';
+import { useEffect, useState } from 'react';
+import {
+  IoTrashBinOutline,
+  IoSunnyOutline,
+  IoMoonOutline,
+  IoRefresh,
+} from 'react-icons/io5';
 
 function ImageList() {
+  const [darkMode, setDarkMode] = useState(false);
   const [pictures, setPictures] = useState([
     {
       id: 1,
@@ -30,11 +36,19 @@ function ImageList() {
   ]);
 
   const [deletedStack, setDeletedStack] = useState<
-    | {
-        id: number;
-        url: string;
-      }[]
+    {
+      id: number;
+      url: string;
+    }[]
   >([]);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.className = 'dark';
+    } else {
+      document.body.className = '';
+    }
+  }, [darkMode]);
 
   const handleDelete = (id: number) => {
     const itemToDelete = pictures.find((item) => item.id === id);
@@ -47,7 +61,7 @@ function ImageList() {
   const handleUndo = () => {
     if (deletedStack.length > 0) {
       const lastDeleted = deletedStack[deletedStack.length - 1];
-      setPictures((prev) => [...prev, lastDeleted]);
+      setPictures((prev) => [lastDeleted, ...prev]);
       setDeletedStack((prev) => prev.slice(0, -1));
     } else {
       alert("There's nothing to undo.");
@@ -60,8 +74,15 @@ function ImageList() {
         <h1 className='text-2xl font-bold'>Instagram</h1>
         {/* More Buttons */}
         <div className='flex items-center gap-2'>
-          <button className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full'>
-            <IoSunnyOutline size={20} />
+          <button
+            onClick={() => setDarkMode((darkMode) => !darkMode)}
+            className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full'
+          >
+            {darkMode ? (
+              <IoSunnyOutline size={20} />
+            ) : (
+              <IoMoonOutline size={20} />
+            )}
             <span className='sr-only'>Toggle dark mode</span>
           </button>
           <button
