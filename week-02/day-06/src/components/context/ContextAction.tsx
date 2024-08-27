@@ -1,8 +1,9 @@
-import { useContext } from 'react';
-import { CounterContext } from './ContextPage';
+import React, { useContext } from 'react';
+import { CounterContextFn } from '../../context/CounterProvider';
 
 function ContextAction() {
-  const { increment, decrement } = useContext(CounterContext)!;
+  console.log('Action Rendering');
+  const { increment, decrement } = useContext(CounterContextFn)!;
   return (
     <div>
       <button onClick={increment} type='button'>
@@ -14,4 +15,4 @@ function ContextAction() {
     </div>
   );
 }
-export default ContextAction;
+export default React.memo(ContextAction);
