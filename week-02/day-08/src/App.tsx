@@ -1,9 +1,11 @@
-import CounterReducer from './components/CounterReducer';
+import AuthReducer from './components/AuthReducer';
+// import CounterReducer from './components/CounterReducer';
 
 const App = () => {
   return (
     <>
-      <CounterReducer />
+      {/* <CounterReducer /> */}
+      <AuthReducer />
     </>
   );
 };
