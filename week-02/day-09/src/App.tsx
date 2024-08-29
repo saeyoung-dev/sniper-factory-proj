@@ -1,13 +1,10 @@
-// import FetchBasic from './components/fetchBasic/FetchBasic';
-import FetchMovie from './components/fetchMovie/FetchMovie';
+import MovieBasic from './components/movies-basic/MovieBasic';
 
-function App() {
+const App = () => {
   return (
     <>
-      {/* <FetchBasic /> */}
-      <FetchMovie />
+      <MovieBasic />
     </>
   );
-}
-
+};
 export default App;
